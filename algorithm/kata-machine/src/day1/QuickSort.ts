@@ -1,6 +1,9 @@
 // Return the pivot index
 function partition(low: number, high: number, arr: number[]): number {
-    const pivot = arr[high];  // Ideally, it should pick from the middle instead
+    const pivot = arr[Math.floor((low + high) / 2)];  // Ideally, it should pick from the middle instead
+    const tmp = arr[high];
+    arr[high] = pivot;
+    arr[Math.floor((low + high) / 2)] = tmp;
 
     // Position for the first element that is smaller than the pivot
     // Another way is to start at low - 1 (outside the bound) but remember to 
