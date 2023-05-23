@@ -70,7 +70,7 @@ export default class SinglyLinkedList<T> {
         if (!curr) {
             return undefined;
         }
-        
+
         this.length--;
         // Deal with head
         if (prev !== undefined) {
@@ -110,7 +110,7 @@ export default class SinglyLinkedList<T> {
         if (!curr) {
             return undefined;
         }
-        
+
         this.length--;
         // Deal with head
         if (prev !== undefined) {
@@ -130,17 +130,13 @@ export default class SinglyLinkedList<T> {
 
     reverse() {
         let prev: Node<T> | undefined = undefined;
-        let curr: Node<T> | undefined = this.head;
-        let next: Node<T> | undefined = curr?.next;
-        while (curr !== undefined) {
+        let curr: Node<T> | undefined = this.head; 
+        let next: Node<T> | undefined = this.head?.next;
+        while (curr) {
             curr.next = prev;
-            prev = curr;
             curr = next;
+            prev = curr;
             next = curr?.next;
         }
-        
-        let tmp = this.head;
-        this.head = this.tail;
-        this.tail = tmp;
     }
 }
