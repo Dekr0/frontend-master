@@ -7,8 +7,13 @@
   },
   "scripts": {
     "tsc": "tsc",
+    "clean": "make",
+    "dev": "ts-node",
     "jest": "jest",
     "jest-init": "jest --init",
     "test": "jest"
+  },
+  "dependencies": {
+    "ts-node": "^10.9.1"
   }
 }
