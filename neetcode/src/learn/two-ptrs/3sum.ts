@@ -1,4 +1,4 @@
-function threeSum(arr: number[]): number[][] {
+function TSum(arr: number[]): number[][] {
     const triplets: number[][] = [];
 
     arr = arr.sort()
@@ -22,6 +22,6 @@ function threeSum(arr: number[]): number[][] {
     return triplets;
 }
 
-threeSum([-1, 0, 1, 2, -1, -4]);
-threeSum([0, 1, 1]);
-threeSum([0, 0, 0]);
+TSum([-1, 0, 1, 2, -1, -4]);
+TSum([0, 1, 1]);
+TSum([0, 0, 0]);
