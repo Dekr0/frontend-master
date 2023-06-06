@@ -1,19 +1,10 @@
-class ListNode {
-    val: number;
-    next: ListNode | null;
+import LNode from './struct';
 
-    constructor(val?: number, next?: ListNode | null) {
-        this.val = val === undefined ? 0 : val;
-        this.next = next === undefined ? null : next;
-    }
-}
-
-
-function reverse(head: ListNode | null): ListNode | null {
+const reverse = function (head: LNode | null): LNode | null {
     if (head === null || head.next === null) return head;
 
-    let prev: ListNode | null = null;
-    let next: ListNode | null;
+    let prev: LNode | null = null;
+    let next: LNode | null;
 
     while (head) {
         next = head.next;
@@ -24,3 +15,5 @@ function reverse(head: ListNode | null): ListNode | null {
 
     return prev;
 }
+
+export default reverse;
