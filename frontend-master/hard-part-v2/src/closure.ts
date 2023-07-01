@@ -109,12 +109,79 @@ function average() {
     }
 }
 
-const avg = average();
 
-console.log(avg());
-console.log(avg(1));
-console.log(avg(2));
-console.log(avg(-3));
-console.log(avg());
-console.log(avg(5));
-console.log(avg());
+function undoFactory(limit: number) {
+    let actions: string[] = [];
+
+    return function(action: string) {
+        switch (action) {
+            case 'undo': {
+                if (actions.length > 0) {
+                    return `${actions.pop()} undone`;
+                } else {
+                    return 'nothing to undo';
+                }
+            }
+            default: {
+                if (actions.length < limit) {
+                    actions.push(action)
+                }
+                return `${action} done`;
+            }
+        }
+    }
+}
+
+function blackjack(array: number[]) {
+    let next = 0;
+    return function(first: number, second: number) {
+        let busted = false;
+        let sum = 0;
+        return function() {
+            if (busted) return 'you are done';
+            
+            if (next > array.length) return 'no more hands';
+                
+            sum = sum ? array[next++] + sum : first + second;
+            
+            if (sum < 21) {
+                return sum;
+            } else {
+                busted = true;
+                return 'bust';
+            }
+        }
+    }
+}
+
+const deal = blackjack([2, 6, 1, 7, 11, 4, 6, 3, 9, 8, 9, 3, 10, 4, 5, 3, 7, 4, 9, 6, 10, 11]);
+
+/*** PLAYER 1 ***/
+const i_like_to_live_dangerously = deal(4, 5);
+console.log(i_like_to_live_dangerously()); // => should log 9
+console.log(i_like_to_live_dangerously()); // => should log 11
+console.log(i_like_to_live_dangerously()); // => should log 17
+console.log(i_like_to_live_dangerously()); // => should log 18
+console.log(i_like_to_live_dangerously()); // => should log 'bust'
+console.log(i_like_to_live_dangerously()); // => should log 'you are done!'
+console.log(i_like_to_live_dangerously()); // => should log 'you are done!'
+
+/*** BELOW LINES ARE FOR THE BONUS ***/
+
+/*** PLAYER 2 ***/
+const i_TOO_like_to_live_dangerously = deal(2, 2);
+console.log(i_TOO_like_to_live_dangerously()); // => should log 4
+console.log(i_TOO_like_to_live_dangerously()); // => should log 15
+console.log(i_TOO_like_to_live_dangerously()); // => should log 19
+console.log(i_TOO_like_to_live_dangerously()); // => should log 'bust'
+console.log(i_TOO_like_to_live_dangerously()); // => should log 'you are done!
+console.log(i_TOO_like_to_live_dangerously()); // => should log 'you are done!
+
+/*** PLAYER 3 ***/
+const i_ALSO_like_to_live_dangerously = deal(3, 7);
+console.log(i_ALSO_like_to_live_dangerously()); // => should log 10
+console.log(i_ALSO_like_to_live_dangerously()); // => should log 13
+console.log(i_ALSO_like_to_live_dangerously()); // => should log 'bust'
+console.log(i_ALSO_like_to_live_dangerously()); // => should log 'you are done!
+console.log(i_ALSO_like_to_live_dangerously()); // => should log 'you are done!
+
