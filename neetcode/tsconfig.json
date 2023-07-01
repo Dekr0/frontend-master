@@ -1,19 +1,14 @@
 {
     "compilerOptions": {
         "outDir": "dist",
-        "allowJs": true,
         "noImplicitAny": true,
         "strictNullChecks": true,
-        "resolveJsonModule": true,
         "noImplicitReturns": true,
-        "esModuleInterop": true,
-        "target": "es6",
+        "target": "esnext",
         "module": "commonjs",
-        "baseUrl": "src",
+        "baseUrl": "./src",
         "paths": {
-            "@code/*": [
-                "day1/*"
-            ]
+            "array-hashing/*": ["try-1/array-hashing/*"]
         }
     },
     "include": [
