@@ -1,3 +1,3 @@
-function searchInsert(nums: number[], target: number): number {
+function _searchInsert(nums: number[], target: number): number {
 
 }
