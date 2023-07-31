@@ -1,2 +1,3 @@
-function searchMatrix(matrix: number[][], target: number): boolean {
-};
+function _searchMatrix(matrix: number[][], target: number): boolean {
+
+}

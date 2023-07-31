@@ -1,3 +1,3 @@
-function minEatingSpeed(piles: number[], h: number): number {
+function _minEatingSpeed(piles: number[], h: number): number {
 
 }

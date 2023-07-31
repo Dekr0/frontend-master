@@ -1,7 +1,6 @@
 export default function bs_list(haystack: number[], needle: number): boolean {
     // Boundary [low, high)
     // Caution, excluding mid because it's compared with needle
-
     let low = 0, high = haystack.length;
     while (low < high) {
         const mid = Math.floor((low + high) / 2);
@@ -13,6 +12,5 @@ export default function bs_list(haystack: number[], needle: number): boolean {
             return true;
         }
     }
-
     return false;
 }

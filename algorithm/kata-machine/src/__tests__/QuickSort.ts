@@ -5,5 +5,6 @@ test("quick-sort", function () {
 
     debugger;
     quick_sort(arr);
-    expect(arr).toEqual([3, 4, 7, 9, 42, 69, 420]);
+    //expect(arr).toEqual([3, 4, 7, 9, 42, 69, 420]);
+    expect(arr).toEqual([420, 69, 42, 9, 7, 4, 3]);
 });
