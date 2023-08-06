@@ -31,25 +31,56 @@ footer {
     text-align: center;
     font-size: 0.8rem;
 }
-.flex-center-header {
+.header {
     box-sizing: border-box;
     display: flex;
-    flex-flow: row no-wrap;
+    flex-flow: row nowrap;
     justify-content: center;
 }
-.flex-rightheader {
+.rightheader {
     display: flex;
     flex-flow: column;
+    margin-left: 0.5%;
+    margin-right: 0;
     justify-content: center;
 }
-.flex-rightheader h1 {
+.rightheader h1 {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 3rem;
     color: #DA0090;
 }
-.flex-center-nav ul {
+.rightheader p {
+    margin-top: -2.5%;
+    margin-bottom: 0;
+}
+nav {
     box-sizing: border-box;
+    border-top: 1px solid #DA0090;
+    border-bottom: 1px solid #A51F10;
+}
+nav ul {
     display: flex;
     flex-flow: row;
     gap: 2.5%;
     justify-content: center;
     list-style-type: none;
+}
+nav ul li a {
+    color: #73352E;
+}
+section {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 10%;
+    justify-content: space-evenly;
+}
+section article img {
+    float: left;
+    margin-right: 2%;
+    border-radius: 1rem;
+}
+section article::after {
+    display: table;
+    clear: both;
 }
