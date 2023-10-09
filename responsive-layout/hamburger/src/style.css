@@ -1,0 +1,125 @@
+/* Read the style sequentially to see how the burger menu is made */
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+}
+
+:root {
+    --bar-width: 60px;
+    --bar-height: 8px;
+    --bar-gap: 6px;
+    --fg: #333;
+    --bg: white;
+
+    --animation-timing: 200ms ease-in-out; /* uniform timing such that all animation following the same pace */
+
+    /* Without calculation, the two diagonal line have incorrect length (too long?) */
+    /* Total height of the hamburger menu */
+    --menu-height: calc(var(--bar-height) * 3 + var(--bar-gap) * 2);
+    --menu-margin: 8px;
+
+    --sqrt: 1.41421356237;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.menu {
+    --x-width: calc(var(--menu-height) * var(--sqrt));
+    display: flex;
+    flex-direction: column; /* three lines in column wise instead of row wise */
+    gap: var(--bar-gap);
+    width: max-content;
+    position: absolute;
+    top: var(--menu-margin);
+    left: var(--menu-margin);
+    z-index: 2; /* ensure the menu is on top of the side bar (Barotrauma sprite) */
+}
+
+/* This draw the icon of hamburger menu.
+ * ::before draw the first line
+ * ::input draw the second line
+ * ::after draw the last line
+ * */
+.menu::before,
+.menu input,
+.menu::after {
+    content: "";
+    width: var(--bar-width);
+    height: var(--bar-height);
+    background-color: var(--fg);
+    border-radius: 9999px;
+    transform-origin: left center;
+    transition: opacity var(--animation-timing), width var(--animation-timing), rotate var(--animation-timing), translate var(--animation-timing), background-color var(--animation-timing);
+}
+
+/* Accessibility to highlight the menu icon is being selected */
+.menu:has(input:focus-visible)::before,
+.menu:has(input:focus-visible)::after,
+.menu:has input:focus-visible {
+    border: 1px solid var(--bg);
+    box-shadow: 0 0 0 1px var(--fg);
+}
+
+.menu input {
+    appearance: none; /* remove the default checkbox icon */
+    padding: 0; /* align the second line back into position */
+    margin: 0;
+    outline: none;
+    pointer-events: none;
+}
+
+/* this select the element before the input is checked */
+/* the element with class 'hamburger-menu' has a checked input, then select ::before pseudo element */
+/* Why input:checked::before does not work ? */ 
+.menu:has(input:checked)::before {
+    rotate: 45deg;
+    width: var(--x-width);
+    translate: 0 calc(var(--bar-height) / -2);
+}
+
+.menu:has(input:checked)::after {
+    rotate: -45deg;
+    width: var(--x-width);
+    translate: 0 calc(var(--bar-height) / 2);;
+}
+
+/* menu icon is checked (clicked), and sidebar is expand */
+.menu:has(input:checked) {
+    --fg: white;
+    --bg: #333;
+}
+
+/* This select the exact input when it's checked */
+.menu input:checked {
+    opacity: 0;
+    width: 0;
+}
+
+ul {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}
+
+
+.sidebar {
+    transition: translate var(--animation-timing);
+    translate: -100%;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    padding-top: calc(var(--burger-height) + var(--menu-margin) + 1rem); /* Push the sidebar based on the dimension of the menu icon */
+}
+
+.menu:has(input:checked) + .sidebar {
+    translate: 0;
+}
+
+@media (min-width: 440px) {
+    .sidebar {
+        translate: 0;
+    }
+}

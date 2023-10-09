@@ -1,0 +1,87 @@
+/* Read the style sequentially to see how the burger menu is made */
+:root {
+    --burger-width: 60px;
+    --burger-height: 8px;
+    --burger-gap: 6px;
+    --fg: #333;
+    --bg: white; 
+    --animation-timing: 200ms ease-in-out; 
+    --square-root: 1.41421356237;
+    --hamburger-height: cal(var(--burger-height) * 3 + var(--burger-gap) * 2);
+}
+
+*, *::after, *::before {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+/*
+ * Three lines in column wise instead of row wise
+ */
+.hamburger-menu {
+    --x-width: calc(var(--hamburger-height) * var(--square-root));
+    position: absolute;
+    width: max-content;
+    top: var(--burger-gap);
+    left: var(--burger-gap);
+    z-index: 2; 
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: var(--burger-gap);
+}
+
+/* This draw the icon of hamburger menu.
+ * ::before draw the first line
+ * ::input draw the second line
+ * ::after draw the last line
+ * */
+.hamburger-menu::before, .hamburger-menu::after, .hamburger-menu input {
+    content: "";
+    width: var(--burger-width);
+    height: var(--burger-height);
+    background-color: var(--fg);
+    border-radius: 9999px;
+    transition: pacity var(--animation-timing), width var(--animation-timing), rotate var(--animation-timing), translate var(--animation-timing), background-color var(--animation-timing); 
+    transform-origin: left center;
+}
+
+.hamburger-menu input {
+    appearance: none; 
+    margin: 0; 
+    padding: 0;
+    outline: none; 
+    pointer-events: none; /* Make the click box un-clickable => handle the check state by the entire label element */
+}
+
+
+.hamburger-menu input:checked {
+    opacity: 0;
+    width: 0;
+    /* background-color: red; debugging check state */
+}
+
+/* this select the element before the input is checked */
+/* the element with class 'hamburger-menu' has a checked input, then select ::before pseudo element */
+/* Why input:checked::before does not work ? */ 
+.hamburger-menu:has(input:checked)::before {
+    rotate: 45deg;
+    width: var(--x-width);
+    translate: 0 calc(var(--burger-height) / -2);
+}
+
+.hamburger-menu:has(input:checked)::after {
+    rotate: -45deg;
+    width: var(--x-width);
+    translate: 0 calc(var(--burger-height) / 2);
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
