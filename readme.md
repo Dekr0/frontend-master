@@ -1,7 +1,2 @@
-### About 
-
----
-
-A repo that stores all the implementation for data structures / algorithms / theory and interview questions written in different languages
-
----
+## Description
+This repository contains all the projects and practices from taking the courses offered by Frontend Master
